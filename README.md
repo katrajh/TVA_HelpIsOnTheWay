@@ -3,6 +3,7 @@ Projekt pri predmetu TVA z naslovom Help is on the way.
 
 # Izdelava projektne dokumentacije
 * ER diagram podatkovne baze
+
 UPORABNIKI
   - ID 
   - IME
