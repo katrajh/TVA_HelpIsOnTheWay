@@ -8,7 +8,9 @@ UPORABNIKI
   - ID [INT]
   - IME [VARCHAR(100)]
   - PRIIMEK [VARCHAR(100)]
-  - STATUS [INT] (0 - admin, 1 - administrator, 2 - navaden uporabnik) 
+  - UPORABNISKO_IME [VARCHAR(100)]
+  - GESLO [VARCHAR(100)]
+  - STATUS [INT] (0 - admin, 1 - urednik, 2 - navaden uporabnik) 
   
 NOVICE
   - ID [INT]
