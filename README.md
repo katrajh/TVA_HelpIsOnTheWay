@@ -53,4 +53,27 @@ BOLNISNICE
 
   # Glavne funkcionalnosti:
   
+UPORABNIKI 
+  1. Dodajanje uporabnikov 
+  2. Urejanje uporabnikov 
+  3. Brisanje uporabnikov 
+
+NOVICE 
+  4. Dodajanje novic
+  5. Urejanje novic
+  6. Brisanje novic 
+  7. Prikaz novic 
+
+AED
+  8. Dodajanje AED naprav 
+  9. Urejanje AED naprav
+  10. Brisanje AED naprav
+  11. Prikaz AED naprav 
+
+ZDRAVSTVENI DOMOVI 
+  12. Prikaz zdravstvenih domov 
+
+BOLNIŠNICE
+  13. Prikaz bolnišnic 
+  14. Učenjak prve pomoči 
   *
