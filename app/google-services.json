@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "263385573323",
+    "firebase_url": "https://helpisontheway-smrk.firebaseio.com",
+    "project_id": "helpisontheway-smrk",
+    "storage_bucket": "helpisontheway-smrk.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:263385573323:android:a6507469fff28b26e5384e",
+        "android_client_info": {
+          "package_name": "tva.how"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "263385573323-po9fg2948icoos20g6ab46p6l5b6jnhu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB2_Q9kIKUfOpE2tipPWjyPnjp5NwBvVsY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "263385573323-po9fg2948icoos20g6ab46p6l5b6jnhu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".activities.HomeScreenAfterLoginActivity">
+
+    <item android:id="@+id/item_odjava"
+        android:title="Odjava" android:icon="@drawable/logout_icon_2"
+        app:showAsAction="always"
+        ></item>
+</menu>

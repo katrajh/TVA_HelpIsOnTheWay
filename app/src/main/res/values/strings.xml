@@ -1,0 +1,40 @@
+<resources>
+    <string name="app_name">HOW - Help is on the way</string>
+
+    <!-- pri prijavi in registraciji -->
+    <string name="s_registracija">Sign up</string>
+    <string name="s_registrirajMe">Sign me up</string>
+    <string name="s_prijava">Sign in</string>
+    <string name="s_imeOsebe">First name</string>
+    <string name="s_priimekOsebe">Last name</string>
+    <string name="s_email">E-mail</string>
+    <string name="s_geslo">Password</string>
+    <string name="s_geslo2">Repeat password</string>
+    <string name="s_pozabljenoGeslo">Forgot password?</string>
+    <string name="s_seNimateRacuna">Don\'t have an account?</string>
+    <string name="s_ustvariteRacun">Sign up</string>
+    <string name="s_pogojiUporabe">I aggree to the terms of use.</string>
+
+    <string name="s_potrdi">Accept</string>
+
+    <string name="s_seznamBolnisnic">List of Hospitals</string>
+    <string name="s_seznamZdomov">List of Health Centers</string>
+    <string name="s_novice">News</string>
+    <string name="s_ucenjakPrvePomoci">Learn First Aid Basics</string>
+    <string name="s_dodajDefibrilator">Add defibrilator (AED)</string>
+    <string name="s_zemljevid">Map</string>
+    <string name="s_telefonskaStevilka">Phone Number</string>
+    <string name="s_znamkaAED">AED Distributor</string>
+    <string name="s_idStevilkaAed">ID number of AED</string>
+    <string name="s_lokacijaAed">Location (street and street number)</string>
+    <string name="s_imeObjekta">Name of building</string>
+    <string name="s_opisLokacije">Description of location</string>
+    <string name="s_slikaAedNaprave">Add picture of AED device</string>
+    <string name="s_dodaj">Add</string>
+
+
+    <!-- Facebook login -->
+    <!-- xxxxxxxxxxx treba nadomestit
+    <string name="facebook_app_id">xxxxxxxxxxxxxx</string>
+    -->
+</resources>

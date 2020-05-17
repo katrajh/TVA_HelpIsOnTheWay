@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">HOW - Help is on the way</string>
+    <string name="s_registracija">Registracija</string>
+    <string name="s_registrirajMe">Registriraj me</string>
+    <string name="s_prijava">Prijava</string>
+    <string name="s_email">E-naslov</string>
+    <string name="s_geslo">Geslo</string>
+    <string name="s_geslo2">Ponovite geslo</string>
+    <string name="s_pozabljenoGeslo">Ste pozabili geslo?</string>
+    <string name="s_seNimateRacuna">Še nimate računa?</string>
+    <string name="s_potrdi">Potrdi</string>
+    <string name="s_seznamBolnisnic">Seznam bolnišnic</string>
+    <string name="s_seznamZdomov">Seznam zdravstvenih domov</string>
+    <string name="s_novice">Novice</string>
+    <string name="s_dodajDefibrilator">Dodaj defibrilator</string>
+    <string name="s_zemljevid">Zemljevid</string>
+    <string name="s_imeOsebe">Ime</string>
+    <string name="s_priimekOsebe">Priimek</string>
+    <string name="s_ustvariteRacun">Ustvarite ga</string>
+    <string name="s_pogojiUporabe">Strinjam se s pogoji uporabe aplikacije</string>
+    <string name="s_ucenjakPrvePomoci">Učenjak prve pomoči</string>
+    <string name="s_telefonskaStevilka">Telefonska številka</string>
+    <string name="s_znamkaAED">Znamka AED</string>
+    <string name="s_idStevilkaAed">ID številka AED</string>
+    <string name="s_lokacijaAed">Naslov (ulica, hišna številka, mesto</string>
+    <string name="s_imeObjekta">Ime objekta</string>
+    <string name="s_opisLokacije">Opis lokacije</string>
+    <string name="s_slikaAedNaprave">Dodaj sliko AED naprave</string>
+    <string name="s_dodaj">Dodaj</string>
+</resources>
