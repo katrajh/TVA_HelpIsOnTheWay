@@ -1,5 +1,17 @@
 # TVA_HelpIsOnTheWay
-Projekt pri predmetu TVA z naslovom Help is on the way. 
+Projekt pri predmetu TVA z naslovom Help is on the way.
+
+# POMEMBNO !!!
+ne sme se commitat:
+* .idea, .gradle, /build, /local.properties
+
+generated files
+* bin/
+* gen/
+
+Ignore gradle files
+* .gradle/
+* build/
 
 # Izdelava projektne dokumentacije
 * ER diagram podatkovne baze

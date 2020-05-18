@@ -22,7 +22,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -75,7 +74,7 @@ public class HomeScreenActivity extends AppCompatActivity {
         card_prvaPomoc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(HomeScreenActivity.this, LearnFirstAidBasicActivity.class);
+                Intent intent = new Intent(HomeScreenActivity.this, LearnFirstAidBasicsActivity.class);
                 startActivity(intent);
             }
         });

@@ -45,4 +45,7 @@ dependencies {
     // Facebook login SDK
     implementation 'com.facebook.android:facebook-android-sdk:5.15.3'
 
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support:design:+'
+
 }

@@ -28,4 +28,14 @@
     <string name="s_opisLokacije">Opis lokacije</string>
     <string name="s_slikaAedNaprave">Dodaj sliko AED naprave</string>
     <string name="s_dodaj">Dodaj</string>
+    <string name="s_kravitev">Krvavitev</string>
+    <string name="s_opekline">Opekline</string>
+    <string name="s_zlomi">Zlomi</string>
+    <string name="s_amputacija">Amputacija</string>
+    <string name="s_sok">Šok</string>
+    <string name="s_zastrupitev">Zastrupitev</string>
+    <string name="s_lekcije">Lekcije</string>
+    <string name="activity_learn_first_aid_tab1">Besedilo</string>
+    <string name="activity_learn_first_aid_tab2">Slike</string>
+    <string name="activity_learn_first_aid_tab3">Video</string>
 </resources>

@@ -14,8 +14,13 @@
         android:roundIcon="@drawable/how_app_logo_icon_v4_orange"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".HealthCentersActivity" android:label="@string/s_seznamZdomov"/>
-        <activity android:name=".LearnFirstAidBasicActivity" android:label="@string/s_ucenjakPrvePomoci"/>
+        <activity android:name=".LearnFirstAidBasicsPageActivity"></activity>
+        <activity
+            android:name=".HealthCentersActivity"
+            android:label="@string/s_seznamZdomov" />
+        <activity
+            android:name=".LearnFirstAidBasicsActivity"
+            android:label="@string/s_ucenjakPrvePomoci" />
         <activity
             android:name=".LoadingScreenActivity"
             android:screenOrientation="locked"
@@ -26,19 +31,30 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".HospitalsActivity" android:label="@string/s_seznamBolnisnic"/>
-        <activity android:name=".NewsActivity" android:label="@string/s_novice"/>
-        <activity android:name=".DefibrilatorMapActivity" android:label="@string/s_zemljevid"/>
-        <activity android:name=".DefibrilatorAddActivity"
-            android:screenOrientation="locked" android:label="@string/s_dodajDefibrilator"/>
+        <activity
+            android:name=".HospitalsActivity"
+            android:label="@string/s_seznamBolnisnic" />
+        <activity
+            android:name=".NewsActivity"
+            android:label="@string/s_novice" />
+        <activity
+            android:name=".DefibrilatorMapActivity"
+            android:label="@string/s_zemljevid" />
+        <activity
+            android:name=".DefibrilatorAddActivity"
+            android:label="@string/s_dodajDefibrilator"
+            android:screenOrientation="locked" />
         <activity android:name=".HomeScreenActivity" />
-        <activity android:name=".RegistrationActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".LoginActivity" android:label="@string/s_prijava"
-            android:noHistory="true"
+        <activity
+            android:name=".RegistrationActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".LoginActivity"
             android:excludeFromRecents="true"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="locked"/>
+            android:label="@string/s_prijava"
+            android:noHistory="true"
+            android:screenOrientation="locked"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTask"
