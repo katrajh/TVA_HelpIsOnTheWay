@@ -10,5 +10,7 @@ public class LearnFirstAidBasicsPageActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_learn_first_aid_basics_page);
+
+
     }
 }
