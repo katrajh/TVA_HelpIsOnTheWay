@@ -221,13 +221,14 @@ public class LoginActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()) {
 
-                            // zatemnitev ozadja
-                            new DarkBackgroundTask().execute();
+                                // zatemnitev ozadja
+                                new DarkBackgroundTask().execute();
 
-                            Log.d("LOG-LoginPage", "signInWithEmail:success");
-                            progressBar.setVisibility(View.GONE);
-                            progressBarHolder.setVisibility(View.GONE);
+                                Log.d("LOG-LoginPage", "signInWithEmail:success");
+                                progressBar.setVisibility(View.GONE);
+                                progressBarHolder.setVisibility(View.GONE);
                             progressBarHolder.setClickable(false);
+
                             FirebaseUser user = mAuth.getCurrentUser();
 
                             // pri resetiranju gesla rabimo referenco na uporabnika

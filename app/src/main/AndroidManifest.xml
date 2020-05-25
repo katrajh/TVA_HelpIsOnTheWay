@@ -14,7 +14,7 @@
         android:roundIcon="@drawable/how_app_logo_icon_v4_orange"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LearnFirstAidBasicsPageActivity"></activity>
+        <activity android:name=".LearnFirstAidBasicsPageActivity" />
         <activity
             android:name=".HealthCentersActivity"
             android:label="@string/s_seznamZdomov" />

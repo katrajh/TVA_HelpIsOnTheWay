@@ -38,4 +38,5 @@
     <string name="activity_learn_first_aid_tab1">Besedilo</string>
     <string name="activity_learn_first_aid_tab2">Slike</string>
     <string name="activity_learn_first_aid_tab3">Video</string>
+    <string name="s_ogled_youtube_videa">Ogled youtube videa</string>
 </resources>
