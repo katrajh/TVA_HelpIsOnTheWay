@@ -47,5 +47,6 @@ dependencies {
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.android.support:design:+'
+    implementation 'com.google.android.gms:play-services-maps:16.0.0'
 
 }

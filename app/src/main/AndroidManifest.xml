@@ -4,8 +4,11 @@
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- za google maps -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> <!-- za google maps -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> <!-- za google maps -->
+
 
     <application
         android:allowBackup="true"
@@ -14,6 +17,9 @@
         android:roundIcon="@drawable/how_app_logo_icon_v4_orange"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <meta-data android:name="com.google.android.geo.API_KEY" android:value="@string/map_api_key" /> <!-- za google maps -->
+        <!-- za google maps (spodnja vrstica): (odpravitev napake: java.lang.NoClassDefFoundError: Failed resolution of: Lorg/apache/http/ProtocolVersion ) -->
+        <uses-library android:name="org.apache.http.legacy" android:required="false"/>
         <activity android:name=".LearnFirstAidBasicsPageActivity" />
         <activity
             android:name=".HealthCentersActivity"

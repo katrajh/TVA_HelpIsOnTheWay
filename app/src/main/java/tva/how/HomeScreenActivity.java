@@ -30,7 +30,7 @@ public class HomeScreenActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     FirebaseUser currentUser = null;
 
-    CardView card_dodajAed, card_novice, card_prvaPomoc, card_zdrDomovi, card_bolnisnice;
+    CardView card_dodajAed, card_novice, card_prvaPomoc, card_zdrDomovi, card_bolnisnice, card_zemljevid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +45,7 @@ public class HomeScreenActivity extends AppCompatActivity {
         card_prvaPomoc = findViewById(R.id.card_prvaPomoc);
         card_zdrDomovi = findViewById(R.id.card_zdrDomovi);
         card_bolnisnice = findViewById(R.id.card_bolnisnice);
+        card_zemljevid = findViewById(R.id.card_zemljevid);
 
         /*
          * Preusmeritev na DefibrilatorAddActivity
@@ -97,6 +98,17 @@ public class HomeScreenActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(HomeScreenActivity.this, HospitalsActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        /*
+         * Preusmeritev na DefibirlatorMapActivity
+         */
+        card_zemljevid.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomeScreenActivity.this, DefibrilatorMapActivity.class);
                 startActivity(intent);
             }
         });
