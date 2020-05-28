@@ -8,19 +8,19 @@
     android:orientation="vertical"
     android:weightSum="10">
 
-
-
-
     <!-- btn zemljevid  -->
     <GridLayout
         android:id="@+id/grid_zemlejvid"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1.7"
+        android:layout_weight="2.5"
         android:alignmentMode="alignMargins"
         android:columnCount="1"
         android:rowCount="1"
-        android:padding="10dp"
+        android:paddingTop="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="0dp"
         android:columnOrderPreserved="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -41,31 +41,12 @@
             android:clickable="true"
             android:foreground="?android:attr/selectableItemBackground">
 
-            <LinearLayout
+            <fragment
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:padding="16dp">
-
-                <!--
-                <ImageView
-                    android:id="@+id/img_aed"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:src="@drawable/medical" />
-                    -->
-
-                <TextView
-                    android:id="@+id/tv_zemljevbid"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/s_zemljevid"
-                    android:textColor="@color/colorBlack"
-                    android:paddingTop="6dp"
-                    android:textAlignment="center"
-                    android:textSize="14sp" />
-            </LinearLayout>
+                android:id="@+id/fragment_mapOnHomeScreen"
+                android:name="com.google.android.gms.maps.SupportMapFragment"
+                />
         </androidx.cardview.widget.CardView>
     </GridLayout>
 
@@ -74,11 +55,14 @@
         android:id="@+id/grid_dodajAed"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1.7"
+        android:layout_weight="1.5"
         android:alignmentMode="alignMargins"
         android:columnCount="1"
         android:rowCount="1"
-        android:padding="10dp"
+        android:paddingTop="5dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="0dp"
         android:columnOrderPreserved="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -135,7 +119,10 @@
         android:columnCount="2"
         android:rowCount="2"
         android:layout_weight="5"
-        android:padding="10dp"
+        android:paddingTop="5dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="0dp"
         android:columnOrderPreserved="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

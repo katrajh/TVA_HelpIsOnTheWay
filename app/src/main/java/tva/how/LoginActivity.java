@@ -20,6 +20,7 @@ import android.view.animation.AlphaAnimation;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -97,6 +98,7 @@ public class LoginActivity extends AppCompatActivity {
         progressBar.setVisibility(View.INVISIBLE);
 
         progressBarHolder = findViewById(R.id.progress_overlay_log);
+        progressBarHolder.setVisibility(View.INVISIBLE);
 
         /*
          * gumb za preusmertiev na zaslon REGISTRACIJA
@@ -200,17 +202,20 @@ public class LoginActivity extends AppCompatActivity {
     private void loginEmailAndPassword() {
 
         progressBar.setVisibility(View.VISIBLE);
+        progressBarHolder.setVisibility(View.VISIBLE);
 
         final String email = et_email.getText().toString();
         final String geslo = et_geslo.getText().toString();
 
         if (TextUtils.isEmpty(email)) {
             progressBar.setVisibility(View.GONE);
+            progressBarHolder.setVisibility(View.GONE);
             Toast.makeText(getApplicationContext(), "Prosimo, vnesite e-mail ...", Toast.LENGTH_LONG).show();
             return;
         }
         if (TextUtils.isEmpty(geslo)) {
             progressBar.setVisibility(View.GONE);
+            progressBarHolder.setVisibility(View.GONE);
             Toast.makeText(getApplicationContext(), "Prosimo, vnesite geslo!", Toast.LENGTH_LONG).show();
             return;
         }
@@ -221,12 +226,10 @@ public class LoginActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()) {
 
-                                // zatemnitev ozadja
-                                new DarkBackgroundTask().execute();
-
-                                Log.d("LOG-LoginPage", "signInWithEmail:success");
-                                progressBar.setVisibility(View.GONE);
-                                progressBarHolder.setVisibility(View.GONE);
+                            // zatemnitev ozadja
+                            Log.d("LOG-LoginPage", "signInWithEmail:success");
+                            progressBar.setVisibility(View.GONE);
+                            progressBarHolder.setVisibility(View.GONE);
                             progressBarHolder.setClickable(false);
 
                             FirebaseUser user = mAuth.getCurrentUser();
@@ -262,48 +265,6 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 });
 
-    }
-
-    // zatemnjeno ozadje za progress barrom
-    private class DarkBackgroundTask extends AsyncTask<Void, Void, Void> {
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-
-            btn_prijava.setEnabled(false);
-
-            inAnimation = new AlphaAnimation(0f, 1f);
-            inAnimation.setDuration(200);
-            progressBarHolder.setAnimation(inAnimation);
-            progressBarHolder.setVisibility(View.VISIBLE);
-
-        }
-
-        @Override
-        protected void onPostExecute(Void aVoid) {
-            super.onPostExecute(aVoid);
-
-            outAnimation = new AlphaAnimation(1f, 0f);
-            outAnimation.setDuration(200);
-            progressBarHolder.setAnimation(outAnimation);
-            progressBarHolder.setVisibility(View.GONE);
-
-            btn_prijava.setEnabled(true);
-        }
-
-        @Override
-        protected Void doInBackground(Void... params) {
-            try {
-                for (int i = 0; i < 5; i++) {
-                    Log.d("Log Login", "Emulating some task.. Step " + i);
-                    TimeUnit.SECONDS.sleep(1);
-                }
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            return null;
-        }
     }
 
 }

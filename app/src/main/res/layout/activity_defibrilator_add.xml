@@ -5,21 +5,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".DefibrilatorAddActivity">
+    <FrameLayout
+        android:id="@+id/progress_overlay_addAed"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:alpha="0.4"
+        android:animateLayoutChanges="true"
+        android:background="@android:color/black"
+        android:clickable="true"
+        android:focusable="true">
+    </FrameLayout>
 
-    <EditText
-        android:id="@+id/et_telefonskaStevilka"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="20dp"
-        android:autofillHints=""
-        android:ems="10"
-        android:textSize="16dp"
-        android:focusable="true"
-        android:hint="@string/s_telefonskaStevilka"
-        android:inputType="textEmailAddress"
-        android:padding="10dp"
+    <ProgressBar
+        android:id="@+id/progress_bar_addAed"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -27,18 +31,18 @@
         android:id="@+id/et_znamkaAed"
         android:layout_width="300dp"
         android:layout_height="50dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="20dp"
         android:autofillHints=""
         android:focusable="true"
         android:ems="10"
         android:textSize="16dp"
         android:padding="10dp"
         android:hint="@string/s_znamkaAED"
-        android:inputType="textEmailAddress"
+        android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_telefonskaStevilka" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/et_idStevilkaAed"
@@ -51,11 +55,28 @@
         android:textSize="16dp"
         android:padding="10dp"
         android:hint="@string/s_idStevilkaAed"
-        android:inputType="textEmailAddress"
+        android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_znamkaAed" />
+
+    <EditText
+        android:id="@+id/et_telefonskaStevilka"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:textSize="16dp"
+        android:focusable="true"
+        android:hint="@string/s_telefonskaStevilka"
+        android:inputType="phone"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_idStevilkaAed"/>
 
     <EditText
         android:id="@+id/et_lokacijaAed"
@@ -68,11 +89,44 @@
         android:textSize="16dp"
         android:padding="10dp"
         android:hint="@string/s_lokacijaAed"
-        android:inputType="textPassword"
+        android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_idStevilkaAed" />
+        app:layout_constraintTop_toBottomOf="@+id/et_telefonskaStevilka" />
+
+    <EditText
+        android:id="@+id/et_kraj"
+        android:layout_width="180dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="8dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:focusable="true"
+        android:hint="@string/s_kraj"
+        android:inputType="text"
+        android:padding="10dp"
+        android:textSize="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_lokacijaAed" />
+
+    <EditText
+        android:id="@+id/et_postnaStevilka"
+        android:layout_width="110dp"
+        android:layout_height="53dp"
+        android:layout_marginTop="8dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:focusable="true"
+        android:hint="@string/s_postnaStevilka"
+        android:inputType="number"
+        android:padding="10dp"
+        android:textSize="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.188"
+        app:layout_constraintStart_toEndOf="@+id/et_kraj"
+        app:layout_constraintTop_toBottomOf="@+id/et_lokacijaAed" />
 
     <EditText
         android:id="@+id/et_imeObjekta"
@@ -85,11 +139,11 @@
         android:textSize="16dp"
         android:padding="10dp"
         android:hint="@string/s_imeObjekta"
-        android:inputType="textPassword"
+        android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_lokacijaAed" />
+        app:layout_constraintTop_toBottomOf="@+id/et_postnaStevilka" />
 
     <EditText
         android:id="@+id/et_opisLokacijeAed"
@@ -102,7 +156,7 @@
         android:textSize="16dp"
         android:padding="10dp"
         android:hint="@string/s_opisLokacije"
-        android:inputType="textPassword"
+        android:inputType="textLongMessage"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"

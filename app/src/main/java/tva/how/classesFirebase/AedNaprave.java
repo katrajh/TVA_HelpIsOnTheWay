@@ -4,16 +4,18 @@ public class AedNaprave {
 
     // atributi
 
-    String lokacija;
+    String id_aed;
     String drzava;
-    String ulica;
+    String lokacija;
     String kraj;
-    String longitude;
-    String latitude;
+    String postna_stevilka;
+    Double latitude;
+    Double longitude;
     String aed_znamka;
-    String opis;
+    String opis_lokacije;
     String naziv_objekta;
     String slika;
+    String telefonska_stevilka;
     String uporabnik_id;
 
     // konstruktor
@@ -22,20 +24,28 @@ public class AedNaprave {
 
     // geterji in seterji
 
+    public String getId_aed() {
+        return id_aed;
+    }
+
+    public void setId_aed(String id_aed) {
+        this.id_aed = id_aed;
+    }
+
+    public String getDrzava() {
+        return drzava;
+    }
+
+    public void setDrzava(String drzava) {
+        this.drzava = drzava;
+    }
+
     public String getLokacija() {
         return lokacija;
     }
 
     public void setLokacija(String lokacija) {
         this.lokacija = lokacija;
-    }
-
-    public String getUlica() {
-        return ulica;
-    }
-
-    public void setUlica(String ulica) {
-        this.ulica = ulica;
     }
 
     public String getKraj() {
@@ -46,20 +56,20 @@ public class AedNaprave {
         this.kraj = kraj;
     }
 
-    public String getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(String longitude) {
-        this.longitude = longitude;
-    }
-
-    public String getLatitude() {
+    public Double getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(String latitude) {
+    public void setLatitude(Double latitude) {
         this.latitude = latitude;
+    }
+
+    public Double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(Double longitude) {
+        this.longitude = longitude;
     }
 
     public String getAed_znamka() {
@@ -70,12 +80,12 @@ public class AedNaprave {
         this.aed_znamka = aed_znamka;
     }
 
-    public String getOpis() {
-        return opis;
+    public String getOpis_lokacije() {
+        return opis_lokacije;
     }
 
-    public void setOpis(String opis) {
-        this.opis = opis;
+    public void setOpis_lokacije(String opis_lokacije) {
+        this.opis_lokacije = opis_lokacije;
     }
 
     public String getNaziv_objekta() {
@@ -102,11 +112,19 @@ public class AedNaprave {
         this.uporabnik_id = uporabnik_id;
     }
 
-    public String getDrzava() {
-        return drzava;
+    public String getTelefonska_stevilka() {
+        return telefonska_stevilka;
     }
 
-    public void setDrzava(String drzava) {
-        this.drzava = drzava;
+    public void setTelefonska_stevilka(String telefonska_stevilka) {
+        this.telefonska_stevilka = telefonska_stevilka;
+    }
+
+    public String getPostna_stevilka() {
+        return postna_stevilka;
+    }
+
+    public void setPostna_stevilka(String postna_stevilka) {
+        this.postna_stevilka = postna_stevilka;
     }
 }

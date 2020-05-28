@@ -67,7 +67,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingTop="6dp"
-                    android:text="@string/s_kravitev"
+                    android:text="@string/s_krvaitev"
                     android:textAlignment="center"
                     android:textColor="@color/colorBlack"
                     android:textSize="14sp" />

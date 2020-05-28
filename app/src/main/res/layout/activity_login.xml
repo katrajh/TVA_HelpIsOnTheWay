@@ -6,6 +6,27 @@
     android:layout_height="match_parent"
     tools:context=".LoginActivity">
 
+    <FrameLayout
+        android:id="@+id/progress_overlay_log"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.4"
+        android:animateLayoutChanges="true"
+        android:background="@android:color/black"
+        android:clickable="true"
+        android:visibility="gone"
+        android:focusable="true">
+    </FrameLayout>
+    <ProgressBar
+        android:id="@+id/progress_bar_log"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <!-- LOGOTIP -->
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/img_logo"
@@ -125,26 +146,5 @@
         app:layout_constraintHorizontal_bias="0.116"
         app:layout_constraintStart_toEndOf="@+id/tv_seNimateRacuna"
         app:layout_constraintTop_toBottomOf="@+id/btn_prijava" />
-
-    <FrameLayout
-        android:id="@+id/progress_overlay_log"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:alpha="0.4"
-        android:animateLayoutChanges="true"
-        android:background="@android:color/black"
-        android:clickable="true"
-        android:visibility="gone">
-
-        <ProgressBar
-            android:id="@+id/progress_bar_log"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:indeterminate="true"
-            android:progress="25"
-            style="?android:attr/progressBarStyleLarge"
-            android:layout_gravity="center" />
-
-    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

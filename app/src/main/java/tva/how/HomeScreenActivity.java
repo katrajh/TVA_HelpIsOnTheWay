@@ -14,6 +14,8 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Intent;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -22,21 +24,43 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
-public class HomeScreenActivity extends AppCompatActivity {
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
+import tva.how.classesFirebase.AedNaprave;
+
+public class HomeScreenActivity extends AppCompatActivity implements OnMapReadyCallback {
+
+    private FirebaseFirestore db;
     private FirebaseAuth mAuth;
     FirebaseUser currentUser = null;
 
     CardView card_dodajAed, card_novice, card_prvaPomoc, card_zdrDomovi, card_bolnisnice, card_zemljevid;
+
+    GoogleMap zemljevid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
 
+        db = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
 
@@ -112,6 +136,13 @@ public class HomeScreenActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        /*
+         * Predogled ZEMLJEVID
+         */
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.fragment_mapOnHomeScreen);
+        mapFragment.getMapAsync(this);
 
     }
 
@@ -261,4 +292,81 @@ public class HomeScreenActivity extends AppCompatActivity {
 
     }
 
+    // konfiguracija ZEMLJEVIDA
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        zemljevid = googleMap;
+
+        LatLng lokacijaMaribor = new LatLng(46.558910, 15.638886);
+        zemljevid.addMarker(new MarkerOptions().position(lokacijaMaribor).title("Maribor"));
+        zemljevid.moveCamera(CameraUpdateFactory.newLatLng(lokacijaMaribor));
+
+        // nastavitev max in min zooma
+        zemljevid.setMinZoomPreference(12.0f);
+        zemljevid.setMaxZoomPreference(30.0f);
+        db.collection("AedNaprave")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+
+                        List<AedNaprave> listAedNaprave = new ArrayList<>();
+
+                        if (task.isSuccessful()) {
+
+                            for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
+                                AedNaprave aedNaprave = documentSnapshot.toObject(AedNaprave.class);
+                                aedNaprave.setId_aed(documentSnapshot.getId());
+                                listAedNaprave.add(aedNaprave);
+                            }
+
+                            for(int i=0; i<listAedNaprave.size(); i++) {
+                                String lokacija = listAedNaprave.get(i).getLokacija();
+                                String postnaSt = listAedNaprave.get(i).getPostna_stevilka();
+                                String kraj = listAedNaprave.get(i).getKraj();
+                                String stringNaslov = lokacija +", "+postnaSt+" "+kraj;
+
+                                zemljevid.addMarker(new MarkerOptions()
+                                        .position(getLocationFromAddress(stringNaslov))
+                                        .title(stringNaslov)
+                                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.how_app_aed_marker_green)));
+                            }
+
+                        } else {
+                            Log.w("LOG:", "Error getting documents.", task.getException());
+                        }
+                    }
+                });
+
+        // z onClickListener metodo nas ob kliku na območje predogled zemljevida preusmeri na DefibirlatorMapActivity
+        zemljevid.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+            @Override
+            public void onMapClick(LatLng latLng) {
+                Intent intent = new Intent(HomeScreenActivity.this, DefibrilatorMapActivity.class);
+                startActivity(intent);
+            }
+        });
+
+    }
+    // pretvorba iz naslova v geografsko širino in dolžino
+    public LatLng getLocationFromAddress(String strNaslov) {
+
+        Geocoder coder = new Geocoder(HomeScreenActivity.this);
+        List<Address> naslov;
+        LatLng valueLatLng = null;
+
+        try {
+            // May throw an IOException
+            naslov = coder.getFromLocationName(strNaslov, 5);
+            if (naslov == null) {
+                return null;
+            }
+            Address lokacija = naslov.get(0);
+            valueLatLng = new LatLng(lokacija.getLatitude(), lokacija.getLongitude() );
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return valueLatLng;
+    }
 }

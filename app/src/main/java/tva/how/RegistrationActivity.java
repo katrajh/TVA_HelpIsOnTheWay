@@ -72,7 +72,9 @@ public class RegistrationActivity extends AppCompatActivity {
 
         final String email = et_email.getText().toString();
         final String geslo1 =  et_pass1.getText().toString();
-        String geslo2 =  et_pass2.getText().toString();
+        final String ime = et_firstName.getText().toString();
+        final String priimek = et_lastName.getText().toString();
+        final String geslo2 =  et_pass2.getText().toString();
 
         if (TextUtils.isEmpty(email)) {
             Toast.makeText(getApplicationContext(), "Prosimo, vnesite e-mail...", Toast.LENGTH_LONG).show();
@@ -104,6 +106,8 @@ public class RegistrationActivity extends AppCompatActivity {
                                     Users user= new Users();
                                     user.setEmail(email);
                                     user.setGeslo(geslo1);
+                                    user.setIme(ime);
+                                    user.setPriimek(priimek);
                                     user.setUserId(fuser.getUid());
                                     user.setTypeOfAccount("email");
 
@@ -124,6 +128,8 @@ public class RegistrationActivity extends AppCompatActivity {
 
                                     Intent intent = new Intent(RegistrationActivity.this, LoginActivity.class);
                                     startActivity(intent);
+                                    // finish();
+
                                 } else {
                                     Log.w("LOG", "createUserWithEmail:failure", task.getException());
                                     Toast.makeText(getApplicationContext(), "Registracija neuspešna, poskusite ponovno",

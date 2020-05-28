@@ -32,13 +32,15 @@
     <string name="s_telefonskaStevilka">Phone Number</string>
     <string name="s_znamkaAED">AED Distributor</string>
     <string name="s_idStevilkaAed">ID number of AED</string>
-    <string name="s_lokacijaAed">Location (street and street number)</string>
+    <string name="s_lokacijaAed">Address (street and street number)</string>
+    <string name="s_kraj">City</string>
+    <string name="s_postnaStevilka">ZIP code</string>
     <string name="s_imeObjekta">Name of building</string>
     <string name="s_opisLokacije">Description of location</string>
     <string name="s_slikaAedNaprave">Add picture of AED device</string>
 
     <!-- Zaslon LearnFirstAidBasics -->
-    <string name="s_kravitev">Bleeding</string>
+    <string name="s_krvaitev">Bleeding</string>
     <string name="s_opekline">Burns</string>
     <string name="s_zlomi">Fractures</string>
     <string name="s_amputacija">Amputation</string>
