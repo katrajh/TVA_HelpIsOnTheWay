@@ -30,6 +30,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -330,6 +331,14 @@ public class HomeScreenActivity extends AppCompatActivity implements OnMapReadyC
                                         .position(getLocationFromAddress(stringNaslov))
                                         .title(stringNaslov)
                                         .icon(BitmapDescriptorFactory.fromResource(R.drawable.how_app_aed_marker_green)));
+
+                                zemljevid.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+                                    @Override
+                                    public boolean onMarkerClick(Marker marker) {
+                                        // do nothing on marker click
+                                        return true;
+                                    }
+                                });
                             }
 
                         } else {
