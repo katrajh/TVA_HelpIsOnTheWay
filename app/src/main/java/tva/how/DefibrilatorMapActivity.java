@@ -159,13 +159,13 @@ public class DefibrilatorMapActivity extends FragmentActivity implements OnMapRe
 
         zemljevid = googleMap;
 
-        //LatLng lokacijaMaribor = new LatLng(46.558910, 15.638886);
-        //zemljevid.addMarker(new MarkerOptions().position(lokacijaMaribor).title("Maribor"));
-        //zemljevid.moveCamera(CameraUpdateFactory.newLatLng(lokacijaMaribor));
+        LatLng lokacijaMaribor = new LatLng(46.558910, 15.638886);
+        zemljevid.addMarker(new MarkerOptions().position(lokacijaMaribor).title("Maribor"));
+        zemljevid.moveCamera(CameraUpdateFactory.newLatLng(lokacijaMaribor));
 
-        LatLng trenutnaLokacija = new LatLng(latitudeCurrentLocation, longitudeCurrentLocation);
-        zemljevid.addMarker(new MarkerOptions().position(trenutnaLokacija).title("Trenutna lokacija"));
-        zemljevid.moveCamera(CameraUpdateFactory.newLatLng(trenutnaLokacija));
+        //LatLng trenutnaLokacija = new LatLng(latitudeCurrentLocation, longitudeCurrentLocation);
+        //zemljevid.addMarker(new MarkerOptions().position(trenutnaLokacija).title("Trenutna lokacija"));
+        //zemljevid.moveCamera(CameraUpdateFactory.newLatLng(trenutnaLokacija));
 
         /*
         *  Dodajanje markerjev(značk) - lokacij AED naprav
