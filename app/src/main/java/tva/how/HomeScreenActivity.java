@@ -317,7 +317,6 @@ public class HomeScreenActivity extends AppCompatActivity implements OnMapReadyC
 
                             for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
                                 AedNaprave aedNaprave = documentSnapshot.toObject(AedNaprave.class);
-                                aedNaprave.setId_aed(documentSnapshot.getId());
                                 listAedNaprave.add(aedNaprave);
                             }
 
@@ -332,6 +331,7 @@ public class HomeScreenActivity extends AppCompatActivity implements OnMapReadyC
                                         .title(stringNaslov)
                                         .icon(BitmapDescriptorFactory.fromResource(R.drawable.how_app_aed_marker_green)));
 
+                                /*
                                 zemljevid.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
                                     @Override
                                     public boolean onMarkerClick(Marker marker) {
@@ -339,6 +339,7 @@ public class HomeScreenActivity extends AppCompatActivity implements OnMapReadyC
                                         return true;
                                     }
                                 });
+                                */
                             }
 
                         } else {
