@@ -7,7 +7,7 @@
     tools:context=".LearnFirstAidBasicsActivity">
 
     <TextView
-        android:id="@+id/tv_lekcijeUcenjak"
+        android:id="@+id/tv_lekcijeNaslov"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="10dp"
@@ -33,7 +33,7 @@
         android:rowCount="3"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_lekcijeUcenjak"
+        app:layout_constraintTop_toBottomOf="@+id/tv_lekcijeNaslov"
         app:layout_constraintVertical_bias="0.18">
 
         <androidx.cardview.widget.CardView
