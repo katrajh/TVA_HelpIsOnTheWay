@@ -39,7 +39,7 @@ import java.util.List;
 
 import tva.how.classesFirebase.AedNaprave;
 
-public class DefibrilatorMapActivity extends FragmentActivity implements OnMapReadyCallback, LocationListener {
+public class MapActivity extends FragmentActivity implements OnMapReadyCallback, LocationListener {
 
     GoogleMap zemljevid;
     private FirebaseFirestore db;
@@ -87,7 +87,7 @@ public class DefibrilatorMapActivity extends FragmentActivity implements OnMapRe
     }
 
     protected void getCurrentLocation() {
-        if (isLocationEnabled(DefibrilatorMapActivity.this)) {
+        if (isLocationEnabled(MapActivity.this)) {
             locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
             criteria = new Criteria();
             bestProvider = String.valueOf(locationManager.getBestProvider(criteria, true)).toString();
@@ -107,7 +107,7 @@ public class DefibrilatorMapActivity extends FragmentActivity implements OnMapRe
                 Log.e("TAG", "GPS is on");
                 latitudeCurrentLocation = location.getLatitude();
                 longitudeCurrentLocation = location.getLongitude();
-                //Toast.makeText(DefibrilatorMapActivity.this, "latitude:" + latitudeCurrentLocation + " longitude:" + longitudeCurrentLocation, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(MapActivity.this, "latitude:" + latitudeCurrentLocation + " longitude:" + longitudeCurrentLocation, Toast.LENGTH_SHORT).show();
             } else {
                 //This is what you need:
                 if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -144,7 +144,7 @@ public class DefibrilatorMapActivity extends FragmentActivity implements OnMapRe
         //open the map:
         latitudeCurrentLocation = location.getLatitude();
         longitudeCurrentLocation = location.getLongitude();
-        //Toast.makeText(DefibrilatorMapActivity.this, "latitude:" + latitudeCurrentLocation + " longitude:" + longitudeCurrentLocation, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(MapActivity.this, "latitude:" + latitudeCurrentLocation + " longitude:" + longitudeCurrentLocation, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -238,7 +238,7 @@ public class DefibrilatorMapActivity extends FragmentActivity implements OnMapRe
     // pretvorba iz naslova v geografsko širino in dolžino
     public LatLng getLocationFromAddress(String strNaslov) {
 
-        Geocoder coder = new Geocoder(DefibrilatorMapActivity.this);
+        Geocoder coder = new Geocoder(MapActivity.this);
         List<Address> naslov;
         LatLng valueLatLng = null;
 

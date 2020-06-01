@@ -2,12 +2,10 @@ package tva.how;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,14 +16,14 @@ import java.util.List;
 
 import tva.how.classesFirebase.Bolnisnice;
 
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
-    private static final String TAG = "RecyclerViewAdapter";
+public class HospitalsRecyclerViewAdapter extends RecyclerView.Adapter<HospitalsRecyclerViewAdapter.ViewHolder> {
+    private static final String TAG = "HospitalsRecyclerViewAdapter";
 
     private List<Bolnisnice> listBolnisnice = new ArrayList<>();
     HospitalsActivity hospitalsActivity;
     private Context mContext;
 
-    public RecyclerViewAdapter(List<Bolnisnice> listBolnisnice, HospitalsActivity hospitalActivity) {
+    public HospitalsRecyclerViewAdapter(List<Bolnisnice> listBolnisnice, HospitalsActivity hospitalActivity) {
         this.listBolnisnice = listBolnisnice;
         this.hospitalsActivity = hospitalActivity;
     }
@@ -51,7 +49,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(hospitalsActivity, DefibrilatorMapActivity.class);
+                Intent intent = new Intent(hospitalsActivity, MapActivity.class);
                 intent.putExtra("status", 2);
                 intent.putExtra("kolekcija", "Bolnisnice");
                 intent.putExtra("naslov", holder.tv_naslovBolnisnice.getText());

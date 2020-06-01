@@ -30,7 +30,6 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -133,7 +132,7 @@ public class HomeScreenActivity extends AppCompatActivity implements OnMapReadyC
         card_zemljevid.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(HomeScreenActivity.this, DefibrilatorMapActivity.class);
+                Intent intent = new Intent(HomeScreenActivity.this, MapActivity.class);
                 startActivity(intent);
             }
         });
@@ -352,7 +351,7 @@ public class HomeScreenActivity extends AppCompatActivity implements OnMapReadyC
         zemljevid.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
             public void onMapClick(LatLng latLng) {
-                Intent intent = new Intent(HomeScreenActivity.this, DefibrilatorMapActivity.class);
+                Intent intent = new Intent(HomeScreenActivity.this, MapActivity.class);
                 intent.putExtra("status", 1);
                 startActivity(intent);
             }

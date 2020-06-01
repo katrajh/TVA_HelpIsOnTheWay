@@ -26,7 +26,6 @@ import com.google.firebase.auth.FirebaseUser;
 import java.util.ArrayList;
 import java.util.List;
 
-import tva.how.classesFirebase.AedNaprave;
 import tva.how.classesFirebase.Bolnisnice;
 
 public class HospitalsActivity extends AppCompatActivity{
@@ -38,7 +37,7 @@ public class HospitalsActivity extends AppCompatActivity{
 
     private RecyclerView rv_bolnisnice;
 
-    RecyclerViewAdapter recyclerViewAdapter;
+    HospitalsRecyclerViewAdapter recyclerViewAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +71,7 @@ public class HospitalsActivity extends AppCompatActivity{
                             bolnisniceList.add(bolnisnice);
                         }
 
-                        recyclerViewAdapter = new RecyclerViewAdapter(bolnisniceList,HospitalsActivity.this);
+                        recyclerViewAdapter = new HospitalsRecyclerViewAdapter(bolnisniceList,HospitalsActivity.this);
                         rv_bolnisnice.setAdapter(recyclerViewAdapter);
 
                     }

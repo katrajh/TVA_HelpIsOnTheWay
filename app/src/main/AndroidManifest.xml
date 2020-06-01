@@ -49,9 +49,8 @@
             android:label="@string/s_novice"
             android:screenOrientation="locked"/>
         <activity
-            android:name=".DefibrilatorMapActivity"
-            android:label="@string/s_zemljevid"
-            android:screenOrientation="locked" />
+            android:name=".MapActivity"
+            android:label="@string/s_zemljevid" />
         <activity
             android:name=".DefibrilatorAddActivity"
             android:label="@string/s_dodajDefibrilator"
