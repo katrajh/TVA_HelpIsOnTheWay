@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
@@ -28,7 +29,7 @@ import java.util.List;
 import tva.how.classesFirebase.AedNaprave;
 import tva.how.classesFirebase.Bolnisnice;
 
-public class HospitalsActivity extends AppCompatActivity {
+public class HospitalsActivity extends AppCompatActivity{
 
     private FirebaseFirestore db;
 
@@ -44,6 +45,7 @@ public class HospitalsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hospitals);
 
+        //Za preverjanje ali je uporabnik prijavljen
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
 
@@ -82,5 +84,19 @@ public class HospitalsActivity extends AppCompatActivity {
                         Log.w("Problem -----", e.getMessage());
                     }
                 });
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        if(currentUser != null) {
+            // do nothing
+        }
+        else {
+            Log.w("LOG", "currentUser:_ "+currentUser.getUid());
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+        }
     }
 }

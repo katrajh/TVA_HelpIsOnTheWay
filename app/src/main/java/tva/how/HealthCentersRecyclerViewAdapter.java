@@ -1,11 +1,13 @@
 package tva.how;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -36,13 +38,27 @@ public class HealthCentersRecyclerViewAdapter extends RecyclerView.Adapter<Healt
     }
 
     @Override
-    public void onBindViewHolder(@NonNull HealthCentersRecyclerViewAdapter.ViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull final HealthCentersRecyclerViewAdapter.ViewHolder holder, final int position) {
 
         //holder.image.setText; = itemView.findViewById(R.id.image);
         holder.tv_nazivZdravstvenegaDoma.setText(listZdravstvenihDomov.get(position).getZD_NAZIV());
         holder.tv_krajZdravstvenegaDoma.setText(listZdravstvenihDomov.get(position).getKRAJ_NAZIV());
         holder.tv_naslovZdravstvenegaDoma.setText(listZdravstvenihDomov.get(position).getLOKACIJA());
         holder.tv_regijaZdravstvenegaDoma.setText(listZdravstvenihDomov.get(position).getREGIJA_NAZIV());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(healthCentersActivity, DefibrilatorMapActivity.class);
+                intent.putExtra("status", 2);
+                intent.putExtra("kolekcija", "ZdravstveniDomovi");
+                intent.putExtra("naslov", holder.tv_naslovZdravstvenegaDoma.getText());
+
+                healthCentersActivity.startActivity(intent);
+
+                //Toast.makeText(healthCentersActivity, "kliknil si me haha", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override

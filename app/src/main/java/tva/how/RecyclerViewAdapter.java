@@ -1,6 +1,7 @@
 package tva.how;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,13 +39,30 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
-
+    public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
         //holder.image.setText; = itemView.findViewById(R.id.image);
+
+        //Napolnim vrednosti v komponente
         holder.tv_nazivBolnisnice.setText(listBolnisnice.get(position).getBOLNISNICA_NAZIV());
         holder.tv_krajBolnisnice.setText(listBolnisnice.get(position).getKRAJ_NAZIV());
         holder.tv_naslovBolnisnice.setText(listBolnisnice.get(position).getLOKACIJA());
         holder.tv_regijaBolnisnice.setText(listBolnisnice.get(position).getREGIJA_NAZIV());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(hospitalsActivity, DefibrilatorMapActivity.class);
+                intent.putExtra("status", 2);
+                intent.putExtra("kolekcija", "Bolnisnice");
+                intent.putExtra("naslov", holder.tv_naslovBolnisnice.getText());
+
+                hospitalsActivity.startActivity(intent);
+
+                Toast.makeText(hospitalsActivity, "kliknil si me haha", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
     }
 
     @Override
@@ -63,6 +81,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
+            //Komponente poiščemo znotraj layouta
             image = itemView.findViewById(R.id.image);
             tv_nazivBolnisnice = itemView.findViewById(R.id.tv_nazivBolnisnice);
             tv_krajBolnisnice = itemView.findViewById(R.id.tv_krajBolnisnice);

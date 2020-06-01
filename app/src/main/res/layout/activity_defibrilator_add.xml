@@ -1,229 +1,243 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".DefibrilatorAddActivity">
-    <FrameLayout
-        android:id="@+id/progress_overlay_addAed"
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="gone"
-        android:alpha="0.4"
-        android:animateLayoutChanges="true"
-        android:background="@android:color/black"
-        android:clickable="true"
-        android:focusable="true">
-    </FrameLayout>
-
-    <ProgressBar
-        android:id="@+id/progress_bar_addAed"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/et_znamkaAed"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="20dp"
-        android:autofillHints=""
-        android:focusable="true"
-        android:ems="10"
-        android:textSize="16dp"
-        android:padding="10dp"
-        android:hint="@string/s_znamkaAED"
-        android:inputType="text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <EditText
-        android:id="@+id/et_idStevilkaAed"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="8dp"
-        android:autofillHints=""
-        android:focusable="true"
-        android:ems="10"
-        android:textSize="16dp"
-        android:padding="10dp"
-        android:hint="@string/s_idStevilkaAed"
-        android:inputType="text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_znamkaAed" />
-
-    <EditText
-        android:id="@+id/et_telefonskaStevilka"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="8dp"
-        android:autofillHints=""
-        android:ems="10"
-        android:textSize="16dp"
-        android:focusable="true"
-        android:hint="@string/s_telefonskaStevilka"
-        android:inputType="phone"
-        android:padding="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_idStevilkaAed"/>
-
-    <EditText
-        android:id="@+id/et_lokacijaAed"
-        android:layout_width="300dp"
-        android:layout_height="53dp"
-        android:layout_marginTop="8dp"
-        android:autofillHints=""
-        android:focusable="true"
-        android:ems="10"
-        android:textSize="16dp"
-        android:padding="10dp"
-        android:hint="@string/s_lokacijaAed"
-        android:inputType="text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_telefonskaStevilka" />
-
-    <EditText
-        android:id="@+id/et_kraj"
-        android:layout_width="180dp"
-        android:layout_height="53dp"
-        android:layout_marginStart="52dp"
-        android:layout_marginTop="8dp"
-        android:autofillHints=""
-        android:ems="10"
-        android:focusable="true"
-        android:hint="@string/s_kraj"
-        android:inputType="text"
-        android:padding="10dp"
-        android:textSize="16dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_lokacijaAed" />
-
-    <EditText
-        android:id="@+id/et_postnaStevilka"
-        android:layout_width="110dp"
-        android:layout_height="53dp"
-        android:layout_marginTop="8dp"
-        android:autofillHints=""
-        android:ems="10"
-        android:focusable="true"
-        android:hint="@string/s_postnaStevilka"
-        android:inputType="number"
-        android:padding="10dp"
-        android:textSize="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.188"
-        app:layout_constraintStart_toEndOf="@+id/et_kraj"
-        app:layout_constraintTop_toBottomOf="@+id/et_lokacijaAed" />
-
-    <EditText
-        android:id="@+id/et_imeObjekta"
-        android:layout_width="300dp"
-        android:layout_height="53dp"
-        android:layout_marginTop="8dp"
-        android:autofillHints=""
-        android:focusable="true"
-        android:ems="10"
-        android:textSize="16dp"
-        android:padding="10dp"
-        android:hint="@string/s_imeObjekta"
-        android:inputType="text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_postnaStevilka" />
-
-    <EditText
-        android:id="@+id/et_opisLokacijeAed"
-        android:layout_width="300dp"
-        android:layout_height="120dp"
-        android:layout_marginTop="8dp"
-        android:focusable="true"
-        android:autofillHints=""
-        android:ems="10"
-        android:textSize="16dp"
-        android:padding="10dp"
-        android:hint="@string/s_opisLokacije"
-        android:inputType="textLongMessage"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_imeObjekta" />
-
-    <ImageView
-        android:id="@+id/img_aed"
-        android:src="@drawable/ic_launcher_background"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toStartOf="@+id/tv_dodajSlikoAed"
-        app:layout_constraintHorizontal_bias="0.808"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_opisLokacijeAed" />
-
-    <TextView
-        android:id="@+id/tv_dodajSlikoAed"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:text="@string/s_slikaAedNaprave"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="@color/colorPrimary"
-        android:textSize="16sp"
-        app:fontFamily="sans-serif-medium"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.75"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_opisLokacijeAed" />
+        android:gravity="center"
+        android:orientation="vertical">
 
-    <Button
-        android:id="@+id/btn_dodajAed"
-        android:layout_width="300dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="45dp"
-        android:background="@drawable/style_rounded_button_1"
-        android:text="@string/s_dodaj"
-        android:textAllCaps="true"
-        android:textColor="@color/colorWhite"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:typeface="sans"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_dodajSlikoAed" />
+        <FrameLayout
+            android:id="@+id/progress_overlay_addAed"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:alpha="0.4"
+            android:animateLayoutChanges="true"
+            android:background="@android:color/black"
+            android:clickable="true"
+            android:focusable="true"
+            android:visibility="gone">
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:alpha="0.4"
-        android:animateLayoutChanges="true"
-        android:background="@android:color/black"
-        android:clickable="true"
-        android:visibility="gone"
-        android:focusable="true">
+            <ProgressBar
+                android:id="@+id/progress_bar_addAed"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </FrameLayout>
 
-        <ProgressBar
-            android:id="@+id/progress_bar_reg"
-            android:layout_width="wrap_content"
+        <EditText
+            android:id="@+id/et_znamkaAed"
+            android:layout_width="match_parent"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
+            android:layout_height="50dp"
+            android:autofillHints=""
+            android:ems="10"
+            android:focusable="true"
+            android:hint="@string/s_znamkaAED"
+            android:inputType="textLongMessage"
+            android:padding="10dp"
+            android:textSize="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.495"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/et_idStevilkaAed"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
+            android:autofillHints=""
+            android:ems="10"
+            android:focusable="true"
+            android:hint="@string/s_idStevilkaAed"
+            android:inputType="text"
+            android:padding="10dp"
+            android:textSize="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.495"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_znamkaAed" />
+
+        <EditText
+            android:id="@+id/et_telefonskaStevilka"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
+            android:autofillHints=""
+            android:ems="10"
+            android:focusable="true"
+            android:hint="@string/s_telefonskaStevilka"
+            android:inputType="phone"
+            android:padding="10dp"
+            android:textSize="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.495"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_idStevilkaAed"/>
+
+        <EditText
+            android:id="@+id/et_lokacijaAed"
+            android:layout_width="match_parent"
+            android:layout_height="53dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="40dp"
+            android:autofillHints=""
+            android:ems="10"
+            android:focusable="true"
+            android:hint="@string/s_lokacijaAed"
+            android:inputType="textLongMessage"
+            android:padding="10dp"
+            android:textSize="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.495"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_telefonskaStevilka" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:indeterminate="true"
-            android:progress="25"
-            style="?android:attr/progressBarStyleLarge"
-            android:layout_gravity="center" />
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp" >
+            <EditText
+                android:id="@+id/et_kraj"
+                android:layout_width="wrap_content"
+                android:layout_height="53dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="10dp"
+                android:autofillHints=""
+                android:ems="10"
+                android:focusable="true"
+                android:hint="@string/s_kraj"
+                android:inputType="textLongMessage"
+                android:padding="10dp"
+                android:textSize="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_lokacijaAed" />
 
-    </FrameLayout>
+            <EditText
+                android:id="@+id/et_postnaStevilka"
+                android:layout_width="wrap_content"
+                android:layout_height="53dp"
+                android:layout_marginTop="8dp"
+                android:autofillHints=""
+                android:ems="10"
+                android:focusable="true"
+                android:hint="@string/s_postnaStevilka"
+                android:inputType="number"
+                android:padding="10dp"
+                android:textSize="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.188"
+                app:layout_constraintStart_toEndOf="@+id/et_kraj"
+                app:layout_constraintTop_toBottomOf="@+id/et_lokacijaAed" />
+        </LinearLayout>
+        <EditText
+            android:id="@+id/et_imeObjekta"
+            android:layout_width="match_parent"
+            android:layout_height="53dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
+            android:autofillHints=""
+            android:ems="10"
+            android:focusable="true"
+            android:hint="@string/s_imeObjekta"
+            android:inputType="textLongMessage"
+            android:padding="10dp"
+            android:textSize="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.495"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_postnaStevilka" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <EditText
+            android:id="@+id/et_opisLokacijeAed"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
+            android:autofillHints=""
+            android:ems="10"
+            android:focusable="true"
+            android:hint="@string/s_opisLokacije"
+            android:inputType="textLongMessage"
+            android:padding="10dp"
+            android:textSize="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.495"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_imeObjekta" />
+
+<!--
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/img_aed"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="15dp"
+                android:src="@drawable/ic_launcher_background"
+                app:layout_constraintEnd_toStartOf="@+id/tv_dodajSlikoAed"
+                app:layout_constraintHorizontal_bias="0.808"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_opisLokacijeAed" />
+
+            <TextView
+                android:id="@+id/tv_dodajSlikoAed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:text="@string/s_slikaAedNaprave"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp"
+                app:fontFamily="sans-serif-medium"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.75"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_opisLokacijeAed" />
+        </LinearLayout>
+-->
+
+        <Button
+            android:id="@+id/btn_dodajAed"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="30dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
+            android:background="@drawable/style_rounded_button_1"
+            android:text="@string/s_dodaj"
+            android:textAllCaps="true"
+            android:textColor="@color/colorWhite"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:typeface="sans"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.495"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_dodajSlikoAed" />
+    </LinearLayout>
+</ScrollView>

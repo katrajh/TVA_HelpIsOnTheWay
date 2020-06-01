@@ -20,13 +20,17 @@
         <meta-data android:name="com.google.android.geo.API_KEY" android:value="@string/map_api_key" /> <!-- za google maps -->
         <!-- za google maps (spodnja vrstica): (odpravitev napake: java.lang.NoClassDefFoundError: Failed resolution of: Lorg/apache/http/ProtocolVersion ) -->
         <uses-library android:name="org.apache.http.legacy" android:required="false"/>
-        <activity android:name=".LearnFirstAidBasicsPageActivity" />
+        <activity android:name=".LearnFirstAidBasicsPageActivity"
+            android:label="@string/s_ucenjakPrvePomoci"
+            android:screenOrientation="locked"/>
         <activity
             android:name=".HealthCentersActivity"
-            android:label="@string/s_seznamZdomov" />
+            android:label="@string/s_seznamZdomov"
+            android:screenOrientation="locked"/>
         <activity
             android:name=".LearnFirstAidBasicsActivity"
-            android:label="@string/s_ucenjakPrvePomoci" />
+            android:label="@string/s_ucenjakPrvePomoci"
+            android:screenOrientation="locked"/>
         <activity
             android:name=".LoadingScreenActivity"
             android:screenOrientation="locked"
@@ -38,18 +42,22 @@
         </activity>
         <activity
             android:name=".HospitalsActivity"
-            android:label="@string/s_seznamBolnisnic" />
+            android:label="@string/s_seznamBolnisnic"
+            android:screenOrientation="locked" />
         <activity
             android:name=".NewsActivity"
-            android:label="@string/s_novice" />
+            android:label="@string/s_novice"
+            android:screenOrientation="locked"/>
         <activity
             android:name=".DefibrilatorMapActivity"
-            android:label="@string/s_zemljevid" />
+            android:label="@string/s_zemljevid"
+            android:screenOrientation="locked" />
         <activity
             android:name=".DefibrilatorAddActivity"
             android:label="@string/s_dodajDefibrilator"
             android:screenOrientation="locked" />
-        <activity android:name=".HomeScreenActivity" />
+        <activity android:name=".HomeScreenActivity"
+            android:screenOrientation="locked"/>
         <activity
             android:name=".RegistrationActivity"
             android:theme="@style/AppTheme.NoActionBar" />

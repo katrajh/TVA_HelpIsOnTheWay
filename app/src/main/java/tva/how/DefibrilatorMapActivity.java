@@ -50,6 +50,9 @@ public class DefibrilatorMapActivity extends FragmentActivity implements OnMapRe
     public LocationManager locationManager;
     public Criteria criteria;
     public String bestProvider;
+    int status;
+    String kolekcija;
+    String naslov;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +62,16 @@ public class DefibrilatorMapActivity extends FragmentActivity implements OnMapRe
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.fragment_map);
         mapFragment.getMapAsync(this);
+
+        Bundle bundle = getIntent().getExtras();
+        status=1;
+        kolekcija="";
+        naslov="";
+        if(bundle != null) {
+            status = bundle.getInt("status");
+            kolekcija = bundle.getString("kolekcija");
+            naslov = bundle.getString("naslov");
+        }
 
         // definicija baze
         db = FirebaseFirestore.getInstance();
@@ -159,50 +172,64 @@ public class DefibrilatorMapActivity extends FragmentActivity implements OnMapRe
 
         zemljevid = googleMap;
 
-        LatLng lokacijaMaribor = new LatLng(46.558910, 15.638886);
-        zemljevid.addMarker(new MarkerOptions().position(lokacijaMaribor).title("Maribor"));
-        zemljevid.moveCamera(CameraUpdateFactory.newLatLng(lokacijaMaribor));
-
         //LatLng trenutnaLokacija = new LatLng(latitudeCurrentLocation, longitudeCurrentLocation);
         //zemljevid.addMarker(new MarkerOptions().position(trenutnaLokacija).title("Trenutna lokacija"));
         //zemljevid.moveCamera(CameraUpdateFactory.newLatLng(trenutnaLokacija));
 
         /*
-        *  Dodajanje markerjev(značk) - lokacij AED naprav
+        *  Dodajanje markerjev(značk)
         */
+        if (status == 1) {
+            db.collection("AedNaprave")
+                    .get()
+                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
 
-        db.collection("AedNaprave")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            LatLng lokacijaMaribor = new LatLng(46.558910, 15.638886);
+                            zemljevid.addMarker(new MarkerOptions().position(lokacijaMaribor).title("Maribor"));
+                            zemljevid.moveCamera(CameraUpdateFactory.newLatLng(lokacijaMaribor));
 
-                        List<AedNaprave> listAedNaprave = new ArrayList<>();
+                            List<AedNaprave> listAedNaprave = new ArrayList<>();
 
-                        if (task.isSuccessful()) {
+                            if (task.isSuccessful()) {
 
-                            for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
-                                AedNaprave aedNaprave = documentSnapshot.toObject(AedNaprave.class);
-                                listAedNaprave.add(aedNaprave);
+                                for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
+                                    AedNaprave aedNaprave = documentSnapshot.toObject(AedNaprave.class);
+                                    listAedNaprave.add(aedNaprave);
+                                }
+
+                                for(int i=0; i<listAedNaprave.size(); i++) {
+                                    String lokacija = listAedNaprave.get(i).getLokacija();
+                                    String postnaSt = listAedNaprave.get(i).getPostna_stevilka();
+                                    String kraj = listAedNaprave.get(i).getKraj();
+                                    String stringNaslov = lokacija +", "+postnaSt+" "+kraj;
+
+                                    zemljevid.addMarker(new MarkerOptions()
+                                            .position(getLocationFromAddress(stringNaslov))
+                                            .title(stringNaslov)
+                                            .icon(BitmapDescriptorFactory.fromResource(R.drawable.how_app_aed_marker_green)));
+                                }
+
+                            } else {
+                                Log.w("LOG:", "Error getting documents.", task.getException());
                             }
-
-                            for(int i=0; i<listAedNaprave.size(); i++) {
-                                String lokacija = listAedNaprave.get(i).getLokacija();
-                                String postnaSt = listAedNaprave.get(i).getPostna_stevilka();
-                                String kraj = listAedNaprave.get(i).getKraj();
-                                String stringNaslov = lokacija +", "+postnaSt+" "+kraj;
-
-                                zemljevid.addMarker(new MarkerOptions()
-                                        .position(getLocationFromAddress(stringNaslov))
-                                        .title(stringNaslov)
-                                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.how_app_aed_marker_green)));
-                            }
-
-                        } else {
-                            Log.w("LOG:", "Error getting documents.", task.getException());
                         }
-                    }
-                });
+                    });
+        }
+        else if(status == 2){
+
+            zemljevid.addMarker(new MarkerOptions()
+                    .position(getLocationFromAddress(naslov))
+                    .title(naslov)
+                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.how_app_hospital_marker)));
+
+            zemljevid.moveCamera(CameraUpdateFactory.newLatLng(getLocationFromAddress(naslov)));
+        }
+        else{
+            Log.w("LOG:", "Error getting documents.");
+        }
+
 
 
     }

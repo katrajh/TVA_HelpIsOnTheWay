@@ -8,7 +8,7 @@
     android:orientation="vertical"
     android:weightSum="10">
 
-    <!-- btn zemljevid  -->
+    <!-- Zemljevid -->
     <GridLayout
         android:id="@+id/grid_zemlejvid"
         android:layout_width="match_parent"
@@ -87,16 +87,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:orientation="vertical"
+                android:orientation="horizontal"
                 android:padding="16dp">
 
-                <!--
                 <ImageView
                     android:id="@+id/img_aed"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:src="@drawable/medical" />
-                    -->
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginEnd="15dp"
+                    android:src="@drawable/how_app_aed_add2" />
 
                 <TextView
                     android:id="@+id/tv_dodajAed"

@@ -63,6 +63,7 @@ public class DefibrilatorAddActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
 
+        //Poiščemo komponente v Layoutu
         et_telefonskaStevilka = findViewById(R.id.et_telefonskaStevilka);
         et_znamkaAed = findViewById(R.id.et_znamkaAed);
         et_idStevilkaAed = findViewById(R.id.et_idStevilkaAed);
@@ -83,7 +84,6 @@ public class DefibrilatorAddActivity extends AppCompatActivity {
         btn_dodajAed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // to do!!
                 // klic metode
                 actionAddAed();
             }
@@ -121,7 +121,6 @@ public class DefibrilatorAddActivity extends AppCompatActivity {
         String nazivObjekta = et_imeObjekta.getText().toString();
         String slika = "";
         String uporabnikId = currentUser.getUid();
-        String latitudeAndLongitude;
         Double latitude;
         Double longitude;
 
@@ -129,6 +128,7 @@ public class DefibrilatorAddActivity extends AppCompatActivity {
 
             String stringNaslov = lokacija +", "+postnaSt+" "+kraj;
 
+            //Pridobitev geografske širine in dolžine iz naslova
             latitude = getLatitudeLocationFromAddress(this, stringNaslov);
             longitude = getLongitudeLocationFromAddress(this, stringNaslov);
 
@@ -148,7 +148,7 @@ public class DefibrilatorAddActivity extends AppCompatActivity {
             aedNaprave.setSlika(slika);
 
             db.collection("AedNaprave")
-                    .add(aedNaprave)
+                    .add(aedNaprave) //Dodajanje v bazo, da se ustvari nov dokument
                     .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                         @Override
                         public void onSuccess(DocumentReference documentReference) {
@@ -156,6 +156,9 @@ public class DefibrilatorAddActivity extends AppCompatActivity {
                             progress_overlay_addAed.setVisibility(View.GONE);
                             Log.d("LOG: ", "DocumentSnapshot added with ID: " + documentReference.getId());
 
+                            Toast.makeText(DefibrilatorAddActivity.this,"V sistem ste uspešno dodali novo AED napravo.", Toast.LENGTH_SHORT).show();
+
+                            //Preusmeritev na prejšnji zaslon
                             Intent intent = new Intent(DefibrilatorAddActivity.this, HomeScreenActivity.class);
                             startActivity(intent);
                             finish();
@@ -168,8 +171,10 @@ public class DefibrilatorAddActivity extends AppCompatActivity {
                             Log.w("LOG: ", "Error adding document", e);
                             progressBar_addAed.setVisibility(View.GONE);
                             progress_overlay_addAed.setVisibility(View.GONE);
+                            Toast.makeText(DefibrilatorAddActivity.this, "Pri dodajanju AED naprave v bazo je prišlo do napake.", Toast.LENGTH_SHORT).show();
                         }
                     });
+
             Toast.makeText(this,"V sistem ste uspešno dodali novo AED napravo.", Toast.LENGTH_SHORT).show();
         }
         else {
@@ -180,7 +185,7 @@ public class DefibrilatorAddActivity extends AppCompatActivity {
         }
     }
 
-    // pretvorba iz naslova v geografsko širino in dolžino
+    // pretvorba iz naslova v geografsko širino
     public Double getLatitudeLocationFromAddress(Context context, String strNaslov) {
 
         Geocoder coder = new Geocoder(context);
@@ -197,6 +202,7 @@ public class DefibrilatorAddActivity extends AppCompatActivity {
             Address lokacija = naslov.get(0);
             //valueLatLng = new LatLng(lokacija.getLatitude(), lokacija.getLongitude());
             valueLat = lokacija.getLatitude();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -204,6 +210,7 @@ public class DefibrilatorAddActivity extends AppCompatActivity {
         return valueLat;
     }
 
+    // pretvorba iz naslova v geografsko dolžino
     public Double getLongitudeLocationFromAddress(Context context, String strNaslov) {
 
         Geocoder coder = new Geocoder(context);

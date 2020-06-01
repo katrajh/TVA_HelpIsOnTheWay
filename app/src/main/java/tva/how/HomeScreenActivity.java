@@ -353,6 +353,7 @@ public class HomeScreenActivity extends AppCompatActivity implements OnMapReadyC
             @Override
             public void onMapClick(LatLng latLng) {
                 Intent intent = new Intent(HomeScreenActivity.this, DefibrilatorMapActivity.class);
+                intent.putExtra("status", 1);
                 startActivity(intent);
             }
         });
