@@ -39,7 +39,7 @@
             app:layout_constraintHorizontal_bias="0.166"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_naslovLekcije" />
-
+<!--
         <Button
             android:id="@+id/btn_gotoyoutubevideo"
             android:layout_width="match_parent"
@@ -49,17 +49,18 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_besediloLekcije" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_besediloLekcije" />-->
 
         <ImageView
             android:id="@+id/img_slikaLekcija"
             android:layout_width="350dp"
             android:layout_height="220dp"
             android:layout_marginTop="24dp"
+            android:src="@drawable/how_app_logo_icon_v4_green"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.491"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btn_gotoyoutubevideo" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_besediloLekcije" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

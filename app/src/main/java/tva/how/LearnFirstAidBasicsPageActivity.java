@@ -46,7 +46,7 @@ public class LearnFirstAidBasicsPageActivity extends AppCompatActivity {
 
         tv_naslovLekcije = findViewById(R.id.tv_naslovLekcije);
         tv_besediloLekcije = findViewById(R.id.tv_besediloLekcije);
-        btn_gotoyoutubevideo = findViewById(R.id.btn_gotoyoutubevideo);
+        //btn_gotoyoutubevideo = findViewById(R.id.btn_gotoyoutubevideo);
         img_slikaLekcija = findViewById(R.id.img_slikaLekcija);
 
         db.collection("OsnovePrvePomoci").whereEqualTo("nazivLekcije", valueExtra_nazivLekcije).get()

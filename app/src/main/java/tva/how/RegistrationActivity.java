@@ -13,6 +13,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -35,6 +36,7 @@ public class RegistrationActivity extends AppCompatActivity {
 
     EditText et_firstName, et_lastName, et_email, et_pass1, et_pass2;
     Button btn_signMeUp;
+    CheckBox checkBox;
 
     ProgressBar progressBar;
 
@@ -54,6 +56,8 @@ public class RegistrationActivity extends AppCompatActivity {
         et_pass2 = findViewById(R.id.et_ponoviGeslo);
         btn_signMeUp = findViewById(R.id.btn_registrirajMe);
         progressBar = findViewById(R.id.progress_bar_reg);
+
+        checkBox = findViewById(R.id.checkBox_pogoji);
 
         progressBar.setVisibility(View.INVISIBLE);
 
@@ -90,59 +94,65 @@ public class RegistrationActivity extends AppCompatActivity {
         }
 
         if (geslo1.equals(geslo2)) {
-            if (geslo1.length() > 6) {
-                mAuth.createUserWithEmailAndPassword(email, geslo1)
-                        .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if (task.isSuccessful()) {
-                                    Toast.makeText(getApplicationContext(), "Registracija uspešna!",
-                                            Toast.LENGTH_LONG).show();
-                                    Log.d("LOG", "createUserWithEmail:success");
-                                    progressBar.setVisibility(View.GONE);
+            if(checkBox.isChecked()) {
+                if (geslo1.length() > 6) {
+                    mAuth.createUserWithEmailAndPassword(email, geslo1)
+                            .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (task.isSuccessful()) {
+                                        Toast.makeText(getApplicationContext(), "Registracija uspešna!",
+                                                Toast.LENGTH_LONG).show();
+                                        Log.d("LOG", "createUserWithEmail:success");
+                                        progressBar.setVisibility(View.GONE);
 
-                                    FirebaseUser fuser = mAuth.getCurrentUser();
+                                        FirebaseUser fuser = mAuth.getCurrentUser();
 
-                                    Users user= new Users();
-                                    user.setEmail(email);
-                                    user.setGeslo(geslo1);
-                                    user.setIme(ime);
-                                    user.setPriimek(priimek);
-                                    user.setUserId(fuser.getUid());
-                                    user.setTypeOfAccount("email");
+                                        Users user= new Users();
+                                        user.setEmail(email);
+                                        user.setGeslo(geslo1);
+                                        user.setIme(ime);
+                                        user.setPriimek(priimek);
+                                        user.setUserId(fuser.getUid());
+                                        user.setTypeOfAccount("email");
 
-                                    db.collection("Users").document(""+fuser.getUid())
-                                            .set(user)
-                                            .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                                @Override
-                                                public void onSuccess(Void aVoid) {
-                                                    Log.w("LOG Registration", "Succesfully added new user");
-                                                }
-                                            })
-                                            .addOnFailureListener(new OnFailureListener() {
-                                                @Override
-                                                public void onFailure(@NonNull Exception e) {
-                                                    Log.w("LOG Registration", "Error adding document", e);
-                                                }
-                                            });
+                                        db.collection("Users").document(""+fuser.getUid())
+                                                .set(user)
+                                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                    @Override
+                                                    public void onSuccess(Void aVoid) {
+                                                        Log.w("LOG Registration", "Succesfully added new user");
+                                                    }
+                                                })
+                                                .addOnFailureListener(new OnFailureListener() {
+                                                    @Override
+                                                    public void onFailure(@NonNull Exception e) {
+                                                        Log.w("LOG Registration", "Error adding document", e);
+                                                    }
+                                                });
 
-                                    Intent intent = new Intent(RegistrationActivity.this, LoginActivity.class);
-                                    startActivity(intent);
-                                    // finish();
+                                        Intent intent = new Intent(RegistrationActivity.this, LoginActivity.class);
+                                        startActivity(intent);
+                                        // finish();
 
-                                } else {
-                                    Log.w("LOG", "createUserWithEmail:failure", task.getException());
-                                    Toast.makeText(getApplicationContext(), "Registracija neuspešna, poskusite ponovno",
-                                            Toast.LENGTH_LONG).show();
-                                    progressBar.setVisibility(View.GONE);
+                                    } else {
+                                        Log.w("LOG", "createUserWithEmail:failure", task.getException());
+                                        Toast.makeText(getApplicationContext(), "Registracija neuspešna, poskusite ponovno",
+                                                Toast.LENGTH_LONG).show();
+                                        progressBar.setVisibility(View.GONE);
+                                    }
+
                                 }
-
-                            }
-                        });
+                            });
+                }
+                else {
+                    progressBar.setVisibility(View.GONE);
+                    Toast.makeText(getApplicationContext(), "Geslo mora vsebovati vsaj 6 znakov!", Toast.LENGTH_LONG).show();
+                }
             }
             else {
                 progressBar.setVisibility(View.GONE);
-                Toast.makeText(getApplicationContext(), "Geslo mora vsebovati vsaj 6 znakov!", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Strinjati se morate s pogoji.", Toast.LENGTH_LONG).show();
             }
         }
         else {
