@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".LearnFirstAidBasicsActivity">
+    android:layout_height="wrap_content"
+    tools:context=".LearnFirstAidBasicsActivity"
+    android:orientation="vertical"
+    android:weightSum="10">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
     <TextView
         android:id="@+id/tv_lekcijeNaslov"
@@ -12,11 +19,12 @@
         android:layout_height="wrap_content"
         android:padding="10dp"
         android:text="@string/s_lekcije"
-        android:textAllCaps="true"
+        android:layout_gravity="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:fontFamily="sans-serif-thin"
+        android:textColor="@color/colorPrimaryDark"
+        app:fontFamily="sans-serif"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -264,5 +272,6 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
     </GridLayout>
+    </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

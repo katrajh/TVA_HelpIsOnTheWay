@@ -24,6 +24,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.facebook.login.LoginManager;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -212,8 +213,8 @@ public class HomeScreenActivity extends AppCompatActivity implements OnMapReadyC
 
                 if(currentUser != null) {
                     if (itemId == R.id.item_odjava) {
-                        FirebaseAuth.getInstance().signOut();
-                        //LoginManager.getInstance().logOut();
+                        FirebaseAuth.getInstance().signOut();   // za google in email
+                        LoginManager.getInstance().logOut();    // za facebook
 
                         finish();
                         startActivity(new Intent(getApplicationContext(), MainActivity.class));
@@ -379,4 +380,5 @@ public class HomeScreenActivity extends AppCompatActivity implements OnMapReadyC
 
         return valueLatLng;
     }
+
 }

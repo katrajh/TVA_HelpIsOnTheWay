@@ -3,5 +3,7 @@
     <string name="map_api_key" translatable="false">
         AIzaSyCYZVw294yuO8gYbJk-H0Q5befbPq42DS0
     </string>
+    <string name="facebook_app_id" translatable="false">732360240639270</string>
+    <string name="fb_login_protocol_scheme" translatable="false">fb732360240639270</string>
 
 </resources>

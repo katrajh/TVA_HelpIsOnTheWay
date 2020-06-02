@@ -25,19 +25,36 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.SignInButton;
+import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Transaction;
 
 import java.util.concurrent.TimeUnit;
+
+import tva.how.classesFirebase.Users;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -56,7 +73,7 @@ public class LoginActivity extends AppCompatActivity {
     AlphaAnimation outAnimation;
     FrameLayout progressBarHolder;
 
-    /**
+
     // Facebook
     private CallbackManager fbCallbackManager;
 
@@ -64,7 +81,6 @@ public class LoginActivity extends AppCompatActivity {
     GoogleSignInClient googleSignInClient;
     int googleRequestCode = 9001;
 
-    */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -180,29 +196,77 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        /*
+         * FACEBOOK login
+         **/
+        fbCallbackManager = CallbackManager.Factory.create();
 
+        LoginButton fb_loginButton = findViewById(R.id.facebook_loginBtn);
+        fb_loginButton.setReadPermissions("email", "public_profile");
+        fb_loginButton.registerCallback(fbCallbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                Log.d("Facebook login", "facebook:onSuccess:" + loginResult);
+                new TaskZatemnjenoOzadje().execute();
+                handleFacebookAccessToken(loginResult.getAccessToken());
+            }
+
+            @Override
+            public void onCancel() {
+                Log.d("Facebook login", "facebook:onCancel");
+            }
+
+            @Override
+            public void onError(FacebookException error) {
+                Log.d("Facebook login", "facebook:onError", error);
+            }
+        });
+
+        /*
+         * GOOGLE login
+         */
+        GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build();
+
+        googleSignInClient = GoogleSignIn.getClient(this, googleSignInOptions);
+
+        GoogleSignInAccount gaccount = GoogleSignIn.getLastSignedInAccount(this);
+
+        SignInButton googleSignInBtn = findViewById(R.id.google_loginBtn);
+
+        googleSignInBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent signInGoogle = googleSignInClient.getSignInIntent();
+                startActivityForResult(signInGoogle, googleRequestCode);
+            }
+        });
     }
-//
-//    @Override
-//    public void onStart() {
-//        super.onStart();
-//        // Check if user is signed in (non-null) and update UI accordingly.
-//
-//        if(currentUser != null) {
-//            Log.w("LOG", "currentUser:_ "+currentUser.getUid());
-//            Intent intent = new Intent(this, HomeScreenActivity.class);
-//            startActivity(intent);
-//        }
-//        else {
-//            // do nothing
-//        }
-//    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+
+        if(currentUser != null) {
+            Log.w("LOG", "currentUser:_ "+currentUser.getUid());
+            Intent intent = new Intent(this, HomeScreenActivity.class);
+            startActivity(intent);
+        }
+        else {
+            // do nothing
+        }
+    }
 
     // EMAIL in GESLO prijava
     private void loginEmailAndPassword() {
 
         progressBar.setVisibility(View.VISIBLE);
         progressBarHolder.setVisibility(View.VISIBLE);
+
+        new TaskZatemnjenoOzadje().execute();
 
         final String email = et_email.getText().toString();
         final String geslo = et_geslo.getText().toString();
@@ -265,6 +329,176 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 });
 
+    }
+
+    // FACEBOOK login
+    private void handleFacebookAccessToken(AccessToken token) {
+        Log.w("Facebook login", "handleFacebookAccessToken:" + token);
+
+        new TaskZatemnjenoOzadje().execute();
+
+        AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
+        mAuth.signInWithCredential(credential)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.d("Facebook login","signInWithCredential:success");
+                            currentUser = mAuth.getCurrentUser();
+
+                            Users users= new Users();
+
+                            users.setEmail(currentUser.getEmail());
+                            users.setIme(currentUser.getDisplayName());
+                            users.setUserId(currentUser.getUid());
+                            users.setTypeOfAccount("facebook");
+
+                            // zapis uporabnika v bazo
+                            db.collection("Users").document(""+currentUser.getUid())
+                                    .set(users)
+                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void aVoid) {
+                                            Log.w("Facebook login", "Succesfully added new user");
+                                        }
+                                    })
+                                    .addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Log.w("Facebook login", "Error adding document", e);
+                                        }
+                                    });
+
+                            // preusmeritev na domači zaslon
+                            Intent intent = new Intent(LoginActivity.this, HomeScreenActivity.class);
+                            startActivity(intent);
+
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Log.w("Facebook login", "signInWithCredential:failure", task.getException());
+                            Toast.makeText(LoginActivity.this, "Authentication failed.",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+
+                    }
+                });
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == googleRequestCode) {
+            Task<GoogleSignInAccount> googleTask = GoogleSignIn.getSignedInAccountFromIntent(data);
+            try {
+                // Google prijava uspešna
+                GoogleSignInAccount account = googleTask.getResult(ApiException.class);
+                firebaseAuthGoogle(account);
+            }
+            catch (ApiException e) {
+                // Google prijava neuspešna
+                Log.w("Google prijava", e);
+            }
+        }
+        else{
+            // Pass the activity result back to the Facebook SDK
+            fbCallbackManager.onActivityResult(requestCode, resultCode, data);
+        }
+
+    }
+
+    private void firebaseAuthGoogle(GoogleSignInAccount account) {
+        Log.w("Google prijava", "firebaseAuthGoogle: "+account.getId());
+
+        new TaskZatemnjenoOzadje().execute();
+
+        AuthCredential googleCredential = GoogleAuthProvider.getCredential(account.getIdToken(), null);
+        mAuth.signInWithCredential(googleCredential)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if(task.isSuccessful()) {
+                            Log.d("Google prijava", "signInWithCredential:success");
+                            currentUser = mAuth.getCurrentUser();
+
+                            Users user= new Users();
+
+                            user.setEmail(currentUser.getEmail());
+                            user.setIme(currentUser.getDisplayName());
+                            user.setUserId(currentUser.getUid());
+                            user.setTypeOfAccount("google");
+
+                            // no zapis uporabnika v bazo
+                            db.collection("Users").document(""+currentUser.getUid())
+                                    .set(user)
+                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void aVoid) {
+                                            Log.w("Google login", "Succesfully added new user");
+                                        }
+                                    })
+                                    .addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Log.w("Google login", "Error adding document", e);
+                                        }
+                                    });
+
+                            // preusmeritev na domači zaslon
+                            Intent intent = new Intent(LoginActivity.this, HomeScreenActivity.class);
+                            startActivity(intent);
+                        }
+                        else {
+                            Log.w("Google prijava", "signInWithCredential:failure", task.getException());
+                            Toast.makeText(LoginActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+
+    }
+
+    // zatemnjeno ozadje za progress barrom
+    private class TaskZatemnjenoOzadje extends AsyncTask<Void, Void, Void> {
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+            btn_prijava.setEnabled(false);
+
+            inAnimation = new AlphaAnimation(0f, 1f);
+            inAnimation.setDuration(200);
+            progressBarHolder.setAnimation(inAnimation);
+            progressBarHolder.setVisibility(View.VISIBLE);
+
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+
+            outAnimation = new AlphaAnimation(1f, 0f);
+            outAnimation.setDuration(200);
+            progressBarHolder.setAnimation(outAnimation);
+            progressBarHolder.setVisibility(View.GONE);
+
+            btn_prijava.setEnabled(true);
+        }
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            try {
+                for (int i = 0; i < 5; i++) {
+                    Log.d("Log Login", "Emulating some task.. Step " + i);
+                    TimeUnit.SECONDS.sleep(1);
+                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
     }
 
 }

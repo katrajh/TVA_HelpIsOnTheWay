@@ -16,16 +16,16 @@
         android:clickable="true"
         android:visibility="gone"
         android:focusable="true">
-        <ProgressBar
-            android:id="@+id/progress_bar_log"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
     </FrameLayout>
+    <ProgressBar
+        android:id="@+id/progress_bar_log"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <!-- LOGOTIP -->
     <androidx.appcompat.widget.AppCompatImageView
@@ -146,5 +146,43 @@
         app:layout_constraintHorizontal_bias="0.116"
         app:layout_constraintStart_toEndOf="@+id/tv_seNimateRacuna"
         app:layout_constraintTop_toBottomOf="@+id/btn_prijava" />
+
+    <View
+        android:id="@+id/divider_login"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="28dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintTop_toBottomOf="@+id/tv_seNimateRacuna"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="vertical"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        app:layout_constraintTop_toBottomOf="@id/divider_login"
+        tools:layout_editor_absoluteX="0dp">
+
+        <com.facebook.login.widget.LoginButton
+            android:id="@+id/facebook_loginBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            tools:layout_editor_absoluteX="91dp"
+            tools:layout_editor_absoluteY="600dp" />
+
+        <com.google.android.gms.common.SignInButton
+            android:id="@+id/google_loginBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            app:layout_constraintHorizontal_bias="0.504"
+            app:layout_constraintVertical_bias="0.0" />
+
+    </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

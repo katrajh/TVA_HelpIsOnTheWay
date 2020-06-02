@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "263385573323-udtu6nedoa98rqt43e0869d56oleeg67.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "tva.how",
+            "certificate_hash": "e8ef70099a8f52ddac0234e34cf25182c1211c79"
+          }
+        },
+        {
           "client_id": "263385573323-po9fg2948icoos20g6ab46p6l5b6jnhu.apps.googleusercontent.com",
           "client_type": 3
         }
