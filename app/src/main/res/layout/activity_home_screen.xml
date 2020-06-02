@@ -13,7 +13,7 @@
         android:id="@+id/grid_zemlejvid"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="2.5"
+        android:layout_weight="2.8"
         android:alignmentMode="alignMargins"
         android:columnCount="1"
         android:rowCount="1"
@@ -55,11 +55,11 @@
         android:id="@+id/grid_dodajAed"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1.5"
+        android:layout_weight="1.7"
         android:alignmentMode="alignMargins"
         android:columnCount="1"
         android:rowCount="1"
-        android:paddingTop="5dp"
+        android:paddingTop="0dp"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:paddingBottom="0dp"
@@ -92,8 +92,8 @@
 
                 <ImageView
                     android:id="@+id/img_aed"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
                     android:layout_marginEnd="15dp"
                     android:src="@drawable/how_app_aed_add2" />
 
@@ -118,7 +118,7 @@
         android:columnCount="2"
         android:rowCount="2"
         android:layout_weight="5"
-        android:paddingTop="5dp"
+        android:paddingTop="0dp"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:paddingBottom="0dp"

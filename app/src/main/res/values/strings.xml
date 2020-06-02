@@ -48,9 +48,8 @@
     <string name="s_zastrupitev">Poisoning</string>
     <string name="s_lekcije">Lessons</string>
 
-    <string name="activity_learn_first_aid_tab1">Text</string>
-    <string name="activity_learn_first_aid_tab2">Pictures</string>
-    <string name="activity_learn_first_aid_tab3">Video</string>
+    <string name="s_informacije">Information about AED</string>
+
     <string name="s_ogled_youtube_videa">Watch YouTube video</string>
 
 

@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
@@ -45,10 +46,10 @@ public class NewsRecyclerViewAdapter extends RecyclerView.Adapter<NewsRecyclerVi
 
         // Da je vsaka druga vrstica drugačne barve
         if(position%2 == 0) {
-            holder.itemView.setBackgroundColor(Color.parseColor("#13DFC624"));
+            holder.itemView.setBackgroundColor(ContextCompat.getColor(newsActivity, R.color.colorWhite));
         }
         else {
-            holder.itemView.setBackgroundColor(Color.parseColor("#fff5cc"));
+            holder.itemView.setBackgroundColor(ContextCompat.getColor(newsActivity, R.color.colorAccentBright));
         }
 
     }

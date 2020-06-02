@@ -33,7 +33,7 @@
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_marginTop="40dp"
-        android:background="@drawable/how_app_logo_icon_v3_orange"
+        android:background="@drawable/how_app_logo_icon_v3_green"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintLeft_toLeftOf="parent"

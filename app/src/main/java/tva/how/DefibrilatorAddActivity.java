@@ -75,11 +75,11 @@ public class DefibrilatorAddActivity extends AppCompatActivity {
         tv_dodajSlikoAed = findViewById(R.id.tv_dodajSlikoAed);
         btn_dodajAed = findViewById(R.id.btn_dodajAed);
 
-        progressBar_addAed = findViewById(R.id.progress_bar_addAed);
         progress_overlay_addAed = findViewById(R.id.progress_overlay_addAed);
+        progressBar_addAed = findViewById(R.id.progress_bar_addAed);
 
-        progressBar_addAed.setVisibility(View.INVISIBLE);
         progress_overlay_addAed.setVisibility(View.INVISIBLE);
+        progressBar_addAed.setVisibility(View.INVISIBLE);
 
         btn_dodajAed.setOnClickListener(new View.OnClickListener() {
             @Override

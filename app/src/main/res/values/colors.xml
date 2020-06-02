@@ -1,10 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#FF9800</color>
-    <color name="colorPrimaryDark">#FF7A22</color>
-    <color name="colorAccent">#A5FF9800</color>
-    <color name="colorAccentBright">#13DFC624</color>
+    <!-- ORANŽNA -->
+    <!--    <color name="colorPrimary">#FF9800</color>
+        <color name="colorPrimaryDark">#FF7A22</color>
+        <color name="colorAccent">#A5FF9800</color>
+        <color name="colorAccentBright">#13DFC624</color>
+        -->
 
+    <!-- ZELENA -->
+    <color name="colorPrimary">#06CA8B</color>
+    <color name="colorPrimaryDark">#05AC76</color>
+    <color name="colorAccent">#73DFBD</color>
+    <color name="colorAccentBright">#EEFFFA</color>
+
+    <!-- BELA IN ČRNA -->
     <color name="colorWhite">#ffffff</color>
     <color name="colorBlack">#000000</color>
 </resources>

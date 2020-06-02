@@ -34,11 +34,9 @@
     <string name="s_sok">Šok</string>
     <string name="s_zastrupitev">Zastrupitve</string>
     <string name="s_lekcije">Lekcije</string>
-    <string name="activity_learn_first_aid_tab1">Besedilo</string>
-    <string name="activity_learn_first_aid_tab2">Slike</string>
-    <string name="activity_learn_first_aid_tab3">Video</string>
     <string name="s_ogled_youtube_videa">Ogled youtube videa</string>
     <string name="s_kraj">Kraj</string>
     <string name="s_krvaitev">Krvavitev</string>
     <string name="s_postnaStevilka">Poštna številka</string>
+    <string name="s_informacije">Informacije o napravi</string>
 </resources>
