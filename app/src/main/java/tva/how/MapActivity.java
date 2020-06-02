@@ -166,6 +166,63 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback{
                             }
                         }
                     });
+
+            zemljevid.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+                @Override
+                public boolean onMarkerClick(Marker marker) {
+
+                    db.collection("AedNaprave")
+                            .whereEqualTo("naziv_objekta", ""+marker.getSnippet())
+                            .get()
+                            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                @Override
+                                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+
+                                    // pop up
+                                    final AlertDialog.Builder builderPopup = new AlertDialog.Builder(MapActivity.this);
+
+                                    // custom dialogPopUpOne set-up
+                                    View dView = getLayoutInflater().inflate(R.layout.dialog_style_moreinfo, null);
+
+                                    TextView tvNaziv = dView.findViewById(R.id.tv_dialog_moreInfo_naziv_text);
+                                    TextView tvOpis = dView.findViewById(R.id.tv_dialog_moreInfo_opis_text);
+                                    TextView tvTelSt = dView.findViewById(R.id.tv_dialog_moreInfo_telSt_text);
+                                    TextView tvZnamka = dView.findViewById(R.id.tv_dialog_moreInfo_znamka_text);
+                                    TextView tvSerijskaSt = dView.findViewById(R.id.tv_dialog_moreInfo_serijskaSt_text);
+
+                                    String text="";
+
+                                    for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
+                                        AedNaprave aed = documentSnapshot.toObject(AedNaprave.class);
+                                        tvNaziv.setText(aed.getNaziv_objekta());
+                                        tvOpis.setText(aed.getOpis_lokacije());
+                                        tvTelSt.setText(aed.getTelefonska_stevilka());
+                                        tvZnamka.setText(aed.getAed_znamka());
+                                        tvSerijskaSt.setText(aed.getId_aed());
+                                    }
+
+                                    final Button btnPositive = dView.findViewById(R.id.dialog_moreInfo_positiveButton);
+
+                                    builderPopup.setView(dView);
+
+                                    final Dialog dialog = builderPopup.create();
+
+                                    dialog.show();
+
+                                    btnPositive.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            dialog.dismiss();
+                                        }
+                                    });
+
+                                }
+                            });
+
+                    return false;
+                }
+            });
+
         }
         else if(status == 2){
 
@@ -179,62 +236,6 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback{
         else{
             Log.w("LOG:", "Error getting documents.");
         }
-
-        zemljevid.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
-            @Override
-            public boolean onMarkerClick(Marker marker) {
-
-                db.collection("AedNaprave")
-                        .whereEqualTo("naziv_objekta", ""+marker.getSnippet())
-                        .get()
-                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                            @Override
-                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-
-                                // pop up
-                                final AlertDialog.Builder builderPopup = new AlertDialog.Builder(MapActivity.this);
-
-                                // custom dialogPopUpOne set-up
-                                View dView = getLayoutInflater().inflate(R.layout.dialog_style_moreinfo, null);
-
-                                TextView tvNaziv = dView.findViewById(R.id.tv_dialog_moreInfo_naziv_text);
-                                TextView tvOpis = dView.findViewById(R.id.tv_dialog_moreInfo_opis_text);
-                                TextView tvTelSt = dView.findViewById(R.id.tv_dialog_moreInfo_telSt_text);
-                                TextView tvZnamka = dView.findViewById(R.id.tv_dialog_moreInfo_znamka_text);
-                                TextView tvSerijskaSt = dView.findViewById(R.id.tv_dialog_moreInfo_serijskaSt_text);
-
-                                String text="";
-
-                                for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
-                                    AedNaprave aed = documentSnapshot.toObject(AedNaprave.class);
-                                    tvNaziv.setText(aed.getNaziv_objekta());
-                                    tvOpis.setText(aed.getOpis_lokacije());
-                                    tvTelSt.setText(aed.getTelefonska_stevilka());
-                                    tvZnamka.setText(aed.getAed_znamka());
-                                    tvSerijskaSt.setText(aed.getId_aed());
-                                }
-
-                                final Button btnPositive = dView.findViewById(R.id.dialog_moreInfo_positiveButton);
-
-                                builderPopup.setView(dView);
-
-                                final Dialog dialog = builderPopup.create();
-
-                                dialog.show();
-
-                                btnPositive.setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View v) {
-                                        dialog.dismiss();
-                                    }
-                                });
-
-                            }
-                        });
-
-                return false;
-            }
-        });
 
     }
 
