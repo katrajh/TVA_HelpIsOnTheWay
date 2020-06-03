@@ -86,7 +86,8 @@
             android:screenOrientation="locked" />
         <activity
             android:name=".RegistrationActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="locked" />
         <activity
             android:name=".LoginActivity"
             android:excludeFromRecents="true"
